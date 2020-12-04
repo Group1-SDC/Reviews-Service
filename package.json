@@ -8,7 +8,10 @@
     "build": "webpack --config webpack.config.js --watch",
     "start": "nodemon server",
     "seed": "node database/seed.js",
-    "test-async": "jest --coverage --runInBand --detectOpenHandles"
+    "test-async": "jest --coverage --runInBand --detectOpenHandles",
+    "customers": "node database/customersGenerator.js",
+    "products": "node database/productsGenerator.js",
+    "reviews": "node database/reviewsGenerator.js"
   },
   "repository": {
     "type": "git",
