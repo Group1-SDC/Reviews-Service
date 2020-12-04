@@ -10,22 +10,24 @@ const createCustomer = () => {
 
 const startWriting = (writeStream, encoding, done) => {
   let i = 750000;
-  function writing(){
-    let canWrite = true
+  writing();
+
+  function writing() {
+    let canWrite = true;
     do {
       i--;
       let customer = createCustomer()
-      if(i === 0){
+      if (i === 0) {
         writeStream.write(customer, encoding, done);
-      }else{
-        writeStream.write(customer, encoding);
+      } else {
+        canWrite = writeStream.write(customer, encoding);
       }
-    } while(i > 0 && canWrite)
-    if(i > 0 && !canWrite){
+    } while (i > 0 && canWrite)
+    if (i > 0) {
       writeStream.once('drain', writing);
     }
   }
-  writing();
+
 }
 
 stream.write(`name\n`, 'utf-8');

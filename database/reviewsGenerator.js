@@ -27,27 +27,28 @@ const createReviews = (i) => {
 const startWriting = (writeStream, encoding, done) => {
   let i = 10000000;
   const num_of_reviews = getRadomInt(20) - 1;
+  writing();
 
   function writing(){
     let canWrite = true;
     do {
-      i--
-      if(i === 0){
+      i--;
+      if (i === 0) {
         for (let j=0; j < num_of_reviews; j++) {
-          writeStream.write(createReviews(i), encoding);
+          canWrite = writeStream.write(createReviews(i), encoding);
         }
         writeStream.write(createReviews(i), encoding, done);
-      }else{
+      } else {
         for (let k=0; k < num_of_reviews; k++) {
-          writeStream.write(createReviews(i), encoding);
+          canWrite = writeStream.write(createReviews(i), encoding);
         }
       }
     } while(i > 0 && canWrite)
-    if(i > 0 && !canWrite){
+    if (i > 0) {
       writeStream.once('drain', writing);
     }
   }
-  writing();
+
 }
 
 stream.write(`product_id,customer_id,star_rating,comfort,quality,create_date,comment,category,fitness,helpful,unhelpful\n`, 'utf-8');

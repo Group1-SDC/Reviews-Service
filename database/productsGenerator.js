@@ -10,22 +10,24 @@ const createProducts = () => {
 
 const startWriting = (writeStream, encoding, done) => {
   let i = 10000000;
+  writing()
+
   function writing(){
-    let canWrite = true
+    let canWrite = true;
     do {
-      i--
+      i--;
       let products = createProducts()
       if(i === 0){
-        writeStream.write(products, encoding, done)
+        writeStream.write(products, encoding, done);
       }else{
-        writeStream.write(products, encoding)
+        canWrite = writeStream.write(products, encoding);
       }
-    } while(i > 0 && canWrite)
-    if(i > 0 && !canWrite){
+    } while (i > 0 && canWrite)
+    if (i > 0) {
       writeStream.once('drain', writing);
     }
   }
-  writing()
+
 }
 
 stream.write(`name\n`, 'utf-8')
