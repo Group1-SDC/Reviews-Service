@@ -9,7 +9,7 @@ const levels = ['first', 'second', 'third', 'fourth', 'fifth'];
 const categories = ['shoes', 'clothes'];
 
 const createReviews = (i) => {
-  const product_id = i;
+  const product_id = i+1;
   const customer_id = getRadomInt(750000);
   const star_rating = stars[getRadomInt(5) - 1];
   const comfort = levels[getRadomInt(5) - 1];
