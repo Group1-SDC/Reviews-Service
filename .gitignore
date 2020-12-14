@@ -10,7 +10,7 @@
 
 # Keys
 *.pem
-newrelic.js
+/newrelic.js
 
 # Notes
-nodeInstall.txt
+/nodeInstall.txt
