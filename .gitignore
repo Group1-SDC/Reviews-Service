@@ -1,11 +1,16 @@
 /node_modules
-/database/cassandra/reviews.csv
 
+# Databases
 /database/postgres/reviews.csv
 /database/postgres/products.csv
 /database/postgres/customers.csv
 
+
 /apache-cassandra-4.0-beta3
 
+# Keys
 *.pem
-/newrelic.js
+newrelic.js
+
+# Notes
+nodeInstall.txt

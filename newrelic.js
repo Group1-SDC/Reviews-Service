@@ -9,7 +9,7 @@ exports.config = {
   license_key: 'd7b7ac144a77e2086fffd1ad60129d0fc850NRAL',
   logging: {
     level: 'trace',
-    filepath: '../../../newrelic_agent.log'
+    filepath: '/newrelic_agent.log'
   },
   utilization: {
     detect_aws: false,
