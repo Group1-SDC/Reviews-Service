@@ -12,7 +12,6 @@
     "customers": "node database/postgres/customersGenerator.js",
     "products": "node database/postgres/productsGenerator.js",
     "reviews": "node database/postgres/reviewsGenerator.js",
-    "cassandraDB": "cqlsh -f database/cassandra/schema.cql",
     "postgresDB": "psql -U marissa reviews < database/postgres/schema.sql"
   },
   "repository": {
