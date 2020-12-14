@@ -1,90 +1,58 @@
-const { Sequelize } = require('sequelize');
-const loginInfo = require('./mySQLpw.js');
+const { Pool } = require('pg');
 
-const orm = new Sequelize('review', loginInfo.u, loginInfo.p, { dialect: 'mysql' });
-
-const Reviews = orm.define('reviews', {
-  review_id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  product_id: {
-    type: Sequelize.INTEGER,
-  },
-  customer_id: {
-    type: Sequelize.INTEGER,
-  },
-  star_rating: {
-    type: Sequelize.STRING,
-  },
-  comfort: {
-    type: Sequelize.STRING,
-  },
-  quality: {
-    type: Sequelize.STRING,
-  },
-  create_date: {
-    type: Sequelize.DATEONLY,
-  },
-  category: {
-    type: Sequelize.STRING,
-  },
-  comment: {
-    type: Sequelize.TEXT,
-  },
-  fitness: {
-    type: Sequelize.STRING,
-  },
-  helpful: {
-    type: Sequelize.INTEGER,
-  },
-  unhelpful: {
-    type: Sequelize.INTEGER,
-  },
+const pool = new Pool({
+  user: 'marissa',
+  host: 'localhost',
+  database: 'reviews',
+  password: '',
+  port: 5432,
 });
 
-const Products = orm.define('products', {
-  product_id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-});
+pool.connect();
 
-const Customers = orm.define('customers', {
-  customer_id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
-    type: Sequelize.STRING,
-  },
-});
+const fetchReviews = (product_id, cb) => {
 
-Customers.hasMany(Reviews, {
-  foreignKey: {
-    name: 'customer_id',
-    allowNull: false,
-  },
-});
-Reviews.belongsTo(Customers, { foreignKey: 'customer_id' });
+  var queryStr = `SELECT * FROM review, customer WHERE review.customer_id = customer.customer_id AND review.product_id = ${product_id}`;
 
-Products.sync();
-Customers.sync();
-Reviews.sync();
-
-const getStarDistribution = function (product_id, star_rating) {
-  return Reviews.findAll({
-    where: { product_id: product_id, star_rating: star_rating },
-    attributes: [
-      [orm.fn('COUNT', orm.col('star_rating')), 'n_stars'],
-    ],
-  });
+  pool
+    .query(queryStr)
+    .then((res) => {
+      cb(res.rows);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
-module.exports.Reviews = Reviews;
-module.exports.Products = Products;
-module.exports.Customers = Customers;
-module.exports.getStarDistribution = getStarDistribution;
+const updateHelpful = (helpful, review_id, cb) => {
+
+  var queryStr = `UPDATE review SET helpful = ${helpful} WHERE review_id = ${review_id}`
+  pool
+    .query(queryStr)
+    .then((res) => {
+      cb(res.rows);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const updateUnhelpful = (unhelpful, review_id, cb) => {
+
+  var queryStr = `UPDATE review SET unhelpful = ${unhelpful} WHERE review_id = ${review_id}`
+  pool
+    .query(queryStr)
+    .then((res) => {
+      cb(res.rows);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+module.exports = {
+  fetchReviews,
+  updateHelpful,
+  updateUnhelpful
+
+};

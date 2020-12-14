@@ -5,7 +5,7 @@ const stream = fs.createWriteStream(`database/postgres/customers.csv`);
 const createCustomer = (i) => {
   const customer_id = i;
   const name = faker.name.findName();
-  return `${customer_id}, ${name}\n`;
+  return `${customer_id},${name}\n`;
 }
 
 const startWriting = (writeStream, encoding, done) => {
