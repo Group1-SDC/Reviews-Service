@@ -8,3 +8,4 @@
 /apache-cassandra-4.0-beta3
 
 *.pem
+/newrelic.js
