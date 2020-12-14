@@ -22,7 +22,7 @@ const createReviews = (i, count) => {
   const helpful = getRadomInt(20);
   const unhelpful = getRadomInt(20);
 
-  return `${review_id},${category}, ${comfort}, ${comment},${create_date}, ${customer_id}, ${fitness},${helpful}, ${product_id}, ${quality}, ${star_rating}, ${unhelpful}\n`;
+  return `${review_id},${category},${comfort},${comment},${create_date},${customer_id},${fitness},${helpful},${product_id},${quality},${star_rating},${unhelpful}\n`;
 }
 
 const startWriting = (writeStream, encoding, done) => {

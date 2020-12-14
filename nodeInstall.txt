@@ -1,0 +1,23 @@
+##Get NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+##Activate NVM
+. ~/.nvm/nvm.sh
+
+##Install Node
+nvm install node
+
+##Check Vesion
+node -e "console.log('Running Node.js ' + process.version)"
+
+##Change Vesion
+nvm install 14
+
+##Make 14 default
+nvm alias default 14
+
+##removing port
+lsof -i tcp:3003
+kill -9 ####
+
+sudo vim

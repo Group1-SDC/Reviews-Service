@@ -36,13 +36,15 @@ class NewestView extends React.Component {
   updateHelpfulNum(e) {
     const oldHelpful = JSON.parse(e.target.value);
     this.props.handleHelpfulOrUnhelpful('helpful', oldHelpful.review_id);
-    axios.put(`/api/reviews/${oldHelpful.review_id}`, { helpful: oldHelpful.helpful + 1 });
+    let helpful_votes = oldHelpful.helpful + 1 ;
+    axios.put(`/api/reviews/${oldHelpful.review_id}/helpful/${helpful_votes}`);
   }
 
   updateUnHelpfulNum(e) {
     const oldUnHelpful = JSON.parse(e.target.value);
     this.props.handleHelpfulOrUnhelpful('unhelpful', oldUnHelpful.review_id);
-    axios.put(`/api/reviews/${oldUnHelpful.review_id}`, { unhelpful: oldUnHelpful.unhelpful + 1 });
+    let unhelpful_votes = oldUnHelpful.unhelpful + 1 ;
+    axios.put(`/api/reviews/${oldUnHelpful.review_id}/unhelpful/${unhelpful_votes}`);
   }
 
   render() {
@@ -65,7 +67,7 @@ class NewestView extends React.Component {
               {review.comment}
             </div>
             <div className="name">
-              <span>{review.customer.name}</span>
+              <span>{review.name}</span>
             </div>
             <div className="bookmark">
               <div>
