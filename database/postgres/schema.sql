@@ -46,6 +46,7 @@ CREATE TABLE review (
 -- DELIMITER ','
 -- CSV HEADER;
 
+
 -- COPY review(review_id,category,comfort,comment,create_date,customer_id,fitness,helpful,product_id,quality,star_rating,unhelpful)
 -- FROM '/Users/marissa/Desktop/SDC/customer-reviews/database/postgres/reviews.csv'
 -- DELIMITER ','
@@ -65,3 +66,4 @@ CREATE TABLE review (
 -- UPDATE review SET helpful = 3 WHERE review_id = 38484;
 
 -- UPDATE review SET unhelpful = 4 WHERE review_id = 73838;
+

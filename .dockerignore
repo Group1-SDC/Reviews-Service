@@ -1,6 +1,8 @@
-/node_modules
+node_modules
+npm-debug.log
 
-# Databases
+coverage/
+
 /database/postgres/reviews.csv
 /database/postgres/reviews1.csv
 /database/postgres/reviews2.csv
@@ -10,18 +12,15 @@
 /database/postgres/products.csv
 /database/postgres/customers.csv
 
-
 /apache-cassandra-4.0-beta3
 
-# Keys
 *.pem
 
-# Notes
 /nodeInstall.txt
 
-# AWS
 *.sh
 
-# New Relic
-newrelic_agent.log
-newrelic.js
+
+
+
+

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.js",
     "start": "nodemon server",
     "seed": "node database/seed.js",
     "test-async": "jest --coverage --runInBand --detectOpenHandles",
@@ -65,3 +65,5 @@
     "webpack-cli": "^4.2.0"
   }
 }
+
+

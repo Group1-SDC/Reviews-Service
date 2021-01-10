@@ -15,6 +15,12 @@ app.use(compression());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 // app.use(morgan('dev'));
+// app.use('/', express.static(path.resolve(__dirname, '../client/dist')));
+
+// app.get('/loaderio-6ea2b205dcbb4c8918b074d7e863132d.txt', (req, res) => {
+//   res.send('loaderio-6ea2b205dcbb4c8918b074d7e863132d')
+// })
+
 app.use('/:id', express.static(path.resolve(__dirname, '../client/dist')));
 
 app.get('/api/reviews/:product_id', (req, res) => {
